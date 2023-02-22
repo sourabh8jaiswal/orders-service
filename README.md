@@ -17,10 +17,14 @@ Make sure you have the following installed:
 3. Clone the application
 4. Install Go package dependencies by running the below commands from order-service folder
 
-    go get -u github.com/gin-gonic/gin
-    go get -u gorm.io/gorm
-    go get -u gorm.io/driver/postgres
-    go get github.com/thedevsaddam/govalidator
+    `go get -u github.com/gin-gonic/gin`
+    
+    `go get -u gorm.io/gorm`
+    
+    `go get -u gorm.io/driver/postgres`
+    
+    `go get github.com/thedevsaddam/govalidator`
+    
     
 5. Log into PostgreSQL DB, and create a `order_service` database.
 
@@ -32,7 +36,7 @@ e.g. "host=localhost user=postgres dbname=order_service port=5432 sslmode=disabl
 
 **For running migrations, run the following file: migrations/migrate.go
 
-    `go run migrations/migrate.go`
+    go run migrations/migrate.go
 
 
 ## Starting the Service
@@ -54,9 +58,15 @@ The endpoints can be invoked using the popular `curl` command or any REST client
 
     
     HTTP METHOD : POST
+    
     URL : http://localhost:5050/orders
+    
     Content-Type : application/json; charset=utf-8
-    RAW DATA : {
+    
+    REQUEST PAYLOAD :
+    
+    `
+    {
     "status": "PENDING_INVOICE",
     "items" : [{
         "id": "1234",
@@ -73,11 +83,12 @@ The endpoints can be invoked using the popular `curl` command or any REST client
     "total": 46,
     "currency_unit": "USD"
 }
-
+`
 * _Fetch all existing orders_
     
     
     HTTP METHOD : GET
+    
     URL : http://localhost:5050/orders
 
 
@@ -85,10 +96,16 @@ The endpoints can be invoked using the popular `curl` command or any REST client
     
     
     HTTP METHOD : PUT
+    
     URL : http://localhost:5050/orders/{order_id}
+    
     SAMPLE URL : http://localhost:5050/orders/1
+    
     Content-Type : application/json; charset=utf-8
-    RAW DATA : {
+    
+    REQUEST PAYLOAD :
+    
+   `{
     "status": "SUCCESS",
     "items" : [{
         "id": "1234",
@@ -98,8 +115,6 @@ The endpoints can be invoked using the popular `curl` command or any REST client
     }],
     "total": 98,
     "currency_unit": "USD"
-}
-               
-
+}`
 
  

@@ -90,6 +90,18 @@ The endpoints can be invoked using the popular `curl` command or any REST client
     HTTP METHOD : GET
     
     URL : http://localhost:5050/orders
+    
+    
+* _Filter orders_
+    
+    
+    HTTP METHOD : GET
+    
+    URL : http://localhost:5050/orders?status=PENDING_INVOICE&order_by=id&sort_order=desc
+    
+    or
+    
+    URL : http://localhost:5050/orders?id=2
 
 
 * Update an existing order

@@ -10,7 +10,7 @@ func ValidateOrder(orderReq models.OrderReq) interface{} {
 	rules := govalidator.MapData{
 		"status":        []string{"required", "in:PENDING_INVOICE,INVOICE_GENERATED,SUCCESS,FAILED"},
 		"items":         []string{"required"},
-		"total":         []string{"required", "numeric"},
+		"total":         []string{"numeric"},
 		"currency_unit": []string{"required", "in:USD,INR"},
 	}
 

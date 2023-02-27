@@ -112,9 +112,32 @@ func UpdateOrder(ctx *gin.Context) {
 }
 
 func ListOrders(ctx *gin.Context) {
+	id := ctx.Query("id")
+	status := ctx.Query("status")
+	total := ctx.Query("total")
+	currencyUnit := ctx.Query("currency_unit")
+	orderby := ctx.Query("order_by")
+	sortOrder := ctx.Query("sort_order")
+
 	var orders []models.Order
-	// saving data into database
-	result := initializers.DB.Find(&orders)
+	db := initializers.DB
+	if id != "" {
+		db = db.Where("id = ?", id)
+	}
+	if status != "" {
+		db = db.Where("status = ?", status)
+	}
+	if total != "" {
+		db = db.Where("total = ?", total)
+	}
+	if currencyUnit != "" {
+		db = db.Where("currency_unit = ?", currencyUnit)
+	}
+	if orderby != "" && sortOrder != "" {
+		db = db.Order(orderby + " " + sortOrder)
+	}
+
+	result := db.Find(&orders)
 	if result.Error != nil {
 		ctx.JSON(500, gin.H{
 			"success": false,
